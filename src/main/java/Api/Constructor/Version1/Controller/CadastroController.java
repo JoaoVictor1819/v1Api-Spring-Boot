@@ -2,6 +2,7 @@ package Api.Constructor.Version1.Controller;
 
 
 import Api.Constructor.Version1.database.model.Cadastro;
+import Api.Constructor.Version1.dto.CadastroDto;
 import Api.Constructor.Version1.service.CadastroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -39,5 +40,11 @@ public class CadastroController {
     private ResponseEntity delete(@PathVariable Long id){
         cadastroService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body("Sucessfully deleted");
+    }
+
+    @PutMapping("/update/{id}")
+    private ResponseEntity<Cadastro> update(@PathVariable Long id, @RequestBody CadastroDto dto){
+        Cadastro updateCadatro = cadastroService.update(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(updateCadatro);
     }
 }
