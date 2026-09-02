@@ -15,7 +15,7 @@ public class CadastroSwaggerConfig {
     public OpenAPI customOpenAPI(){
         return new OpenAPI().info(new Info()
                 .title("Cadastro API")
-                .description("API para gerenciamento de cadastros")
+                .description("Documentacao da API para gerenciamento de cadastros")
                 .version("1.0"));
     }
 }
