@@ -1,0 +1,15 @@
+package Api.Constructor.Version1.Swagger;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class CadastroSwaggerConfig {
+
+    @Bean
+    public OpenAPI customOpenAPI(){
+
+        return null;
+    }
+}

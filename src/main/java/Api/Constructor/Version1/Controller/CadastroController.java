@@ -36,6 +36,12 @@ public class CadastroController {
         return ResponseEntity.status(HttpStatus.OK).body(cadastros);
     }
 
+    @GetMapping("/findById/{id}")
+    private ResponseEntity<Cadastro> findById(@PathVariable Long id){
+        Cadastro cadastro = cadastroService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(cadastro);
+    }
+
     @DeleteMapping("/delete/{id}")
     private ResponseEntity delete(@PathVariable Long id){
         cadastroService.delete(id);
@@ -43,7 +49,7 @@ public class CadastroController {
     }
 
     @PutMapping("/update/{id}")
-    private ResponseEntity<Cadastro> update(@PathVariable Long id, @RequestBody CadastroDto dto){
+    private ResponseEntity<Cadastro> update(@Valid @PathVariable Long id, @RequestBody CadastroDto dto){
         Cadastro updateCadatro = cadastroService.update(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updateCadatro);
     }

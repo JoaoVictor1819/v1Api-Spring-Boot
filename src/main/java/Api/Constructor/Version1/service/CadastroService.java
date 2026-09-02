@@ -31,6 +31,11 @@ public class CadastroService {
         return cadatroRepository.findAll();
     }
 
+    public Cadastro findById(Long id){
+        return cadatroRepository.findById(id)
+                .orElseThrow(()-> new CadastroNotFounException("Cadastro with id " + id + " not found"));
+    }
+
     public void delete(Long id){
         if (!cadatroRepository.existsById(id)){
             throw new CadastroNotFounException("Cadastro with id " + id + " not found");
