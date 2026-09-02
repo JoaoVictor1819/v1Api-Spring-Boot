@@ -1,5 +1,6 @@
 package Api.Constructor.Version1.exception;
 
+
 public class CadastroNotFounException extends RuntimeException {
 
     public CadastroNotFounException() {

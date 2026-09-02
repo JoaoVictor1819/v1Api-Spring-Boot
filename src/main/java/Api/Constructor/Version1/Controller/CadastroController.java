@@ -26,7 +26,7 @@ public class CadastroController {
     public ResponseEntity<Cadastro> save(@RequestBody @Valid Cadastro dto){
       var cadastro = new Cadastro();
         BeanUtils.copyProperties(dto, cadastro);
-        return ResponseEntity.status(HttpStatus.CREATED).body(cadastroService.save());
+        return ResponseEntity.status(HttpStatus.CREATED).body(cadastroService.save(cadastro));
     }
 
     @GetMapping("/findAll")
@@ -35,7 +35,7 @@ public class CadastroController {
         return ResponseEntity.status(HttpStatus.OK).body(cadastros);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     private ResponseEntity delete(@PathVariable Long id){
         cadastroService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body("Sucessfully deleted");

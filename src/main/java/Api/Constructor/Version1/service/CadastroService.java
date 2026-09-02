@@ -19,8 +19,8 @@ public class CadastroService {
     }
 
 
-    public Cadastro save(){
-       return cadatroRepository.save(new Cadastro());
+    public Cadastro save(Cadastro cadastro){
+       return cadatroRepository.save(cadastro);
     }
 
 
@@ -34,4 +34,6 @@ public class CadastroService {
         }
         cadatroRepository.deleteById(id);
     }
+
+
 }
