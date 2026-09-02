@@ -8,3 +8,12 @@ public record CadastroDto(
 
         String descripiton) {
 }
+
+
+
+/*
+IMPORTANTE: Validacao de dados de entrada,
+para garantir que os dados recebidos
+pelo sistema
+estejam corretos e consistentes.
+*/

@@ -43,14 +43,14 @@ public class CadastroController {
 
     @GetMapping("/findById/{id}")
     @Operation(summary = "Busca cadastro por ID", description = "Endpoint para buscar um cadastro pelo seu ID na base de dados")
-    private ResponseEntity<Cadastro> findById(@PathVariable Long id){
+    private ResponseEntity<Cadastro> findById(@Valid @PathVariable Long id){
         Cadastro cadastro = cadastroService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(cadastro);
     }
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "Deleta cadastro por ID", description = "Endpoint para deletar um cadastro pelo seu ID na base de dados")
-    private ResponseEntity delete(@PathVariable Long id){
+    private ResponseEntity delete(@Valid @PathVariable Long id){
         cadastroService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body("Sucessfully deleted");
     }
