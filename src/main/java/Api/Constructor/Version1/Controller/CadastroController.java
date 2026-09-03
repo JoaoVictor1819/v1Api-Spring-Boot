@@ -28,7 +28,7 @@ public class CadastroController {
 
     @PostMapping("/save")
     @Operation(summary = "Cadatrar usuário", description = "Endpoint para cadastrar um novo usuário que ainda nao esta cadastrado na base de dados")
-    public ResponseEntity<Cadastro> save(@Valid @RequestBody CadastroDto dto){
+    public ResponseEntity<Cadastro> save(@RequestBody @Valid CadastroDto dto){
       var cadastro = new Cadastro();
         BeanUtils.copyProperties(dto, cadastro);
         return ResponseEntity.status(HttpStatus.CREATED).body(cadastroService.save(cadastro));

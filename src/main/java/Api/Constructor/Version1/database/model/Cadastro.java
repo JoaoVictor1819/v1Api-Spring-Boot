@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "cadastros")
 @Data
@@ -16,6 +19,8 @@ public class Cadastro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private LocalDateTime dataRegistro = LocalDateTime.now();
 
     private String name;
     private String email;

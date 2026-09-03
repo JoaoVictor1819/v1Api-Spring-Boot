@@ -5,11 +5,13 @@ import Api.Constructor.Version1.database.model.Cadastro;
 import Api.Constructor.Version1.database.repository.CadatroRepository;
 import Api.Constructor.Version1.dto.CadastroDto;
 import Api.Constructor.Version1.exception.CadastroNotFounException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class CadastroService {
 

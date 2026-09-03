@@ -1,28 +1,27 @@
 package Api.Constructor.Version1.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record CadastroDto(
+import java.time.LocalDateTime;
 
+public record CadastroDto(
 
         @Size(min = 4, max = 50, message = "Name must be between 4 and 50 characters")
         @NotBlank(message = "Name is mandatory")
         String name,
 
-        @NotBlank
+        @NotBlank(message = "Email is mandatory")
         @Email
         String email,
 
-
         @Size(max = 200, message = "Description must be")
-        @NotBlank
+        @NotBlank(message = "Description is mandatory")
         String descripition) {
 
 }
-
-
 
 /*
 Validacoes impostantes para BRASIL:
