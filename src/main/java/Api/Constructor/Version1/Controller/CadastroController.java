@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/home/cadastro")
@@ -41,10 +43,17 @@ public class CadastroController {
         return ResponseEntity.status(HttpStatus.OK).body(cadastros);
     }
 
-    @GetMapping("/findById/{id}")
+    @GetMapping("/search/{id}")
     @Operation(summary = "Busca cadastro por ID", description = "Endpoint para buscar um cadastro pelo seu ID na base de dados")
     private ResponseEntity<Cadastro> findById(@Valid @PathVariable Long id){
         Cadastro cadastro = cadastroService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(cadastro);
+    }
+
+    @GetMapping("/search/findByName")
+    @Operation(summary = "Busca cadastro por nome", description = "Endpoint para buscar cadastros pelo seu nome na base de dados")
+    private ResponseEntity<List<Cadastro>> list(@RequestParam (required = false) String name){
+        List<Cadastro> cadastro = cadastroService.findByName(name);
         return ResponseEntity.status(HttpStatus.OK).body(cadastro);
     }
 

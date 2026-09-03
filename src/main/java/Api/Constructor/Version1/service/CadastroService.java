@@ -5,6 +5,7 @@ import Api.Constructor.Version1.database.model.Cadastro;
 import Api.Constructor.Version1.database.repository.CadatroRepository;
 import Api.Constructor.Version1.dto.CadastroDto;
 import Api.Constructor.Version1.exception.CadastroNotFounException;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +36,14 @@ public class CadastroService {
     public Cadastro findById(Long id){
         return cadatroRepository.findById(id)
                 .orElseThrow(()-> new CadastroNotFounException("Cadastro with id " + id + " not found"));
+    }
+
+    public List<Cadastro> findByName(String name){
+        if (name == null || name.isEmpty()){
+            return cadatroRepository.findAll();
+        }
+        return cadatroRepository.findByNameContainingIgnoreCase(name);
+
     }
 
     public void delete(Long id){
