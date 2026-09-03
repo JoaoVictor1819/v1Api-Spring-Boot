@@ -14,6 +14,8 @@ public record CadastroDto(
         @Email
         String email,
 
+        @NotBlank
+        @Size(max = 200, message = "Description must be")
         String descripiton) {
 }
 
