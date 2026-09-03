@@ -10,6 +10,8 @@ public record CadastroDto(
         @Size(min = 4, max = 50, message = "Name must be between 4 and 50 characters")
         String name,
 
+        @NotBlank
+        @Email
         String email,
 
         String descripiton) {
