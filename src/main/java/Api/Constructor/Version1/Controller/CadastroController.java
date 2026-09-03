@@ -28,7 +28,7 @@ public class CadastroController {
 
     @PostMapping("/save")
     @Operation(summary = "Cadatrar usuário", description = "Endpoint para cadastrar um novo usuário que ainda nao esta cadastrado na base de dados")
-    public ResponseEntity<Cadastro> save(@RequestBody @Valid Cadastro dto){
+    public ResponseEntity<Cadastro> save(@Valid @RequestBody CadastroDto dto){
       var cadastro = new Cadastro();
         BeanUtils.copyProperties(dto, cadastro);
         return ResponseEntity.status(HttpStatus.CREATED).body(cadastroService.save(cadastro));
@@ -57,7 +57,7 @@ public class CadastroController {
 
     @PutMapping("/update/{id}")
     @Operation(summary = "Atualiza cadastro por ID", description = "Endpoint para atualizar um cadastro pelo seu ID na base de dados")
-    private ResponseEntity<Cadastro> update(@Valid @PathVariable Long id, @RequestBody CadastroDto dto){
+    private ResponseEntity<Cadastro> update(@PathVariable @Valid  Long id, @RequestBody @Valid CadastroDto dto){
         Cadastro updateCadatro = cadastroService.update(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updateCadatro);
     }

@@ -6,22 +6,29 @@ import jakarta.validation.constraints.Size;
 
 public record CadastroDto(
 
-        @NotBlank(message = "Name is mandatory")
+
         @Size(min = 4, max = 50, message = "Name must be between 4 and 50 characters")
+        @NotBlank(message = "Name is mandatory")
         String name,
 
         @NotBlank
         @Email
         String email,
 
-        @NotBlank
+
         @Size(max = 200, message = "Description must be")
+        @NotBlank
         String descripition) {
+
 }
 
 
 
 /*
+Validacoes impostantes para BRASIL:
+@Cpf
+@Cnpj
+@TituloEleitoral
 IMPORTANTE: Validacao de dados de entrada,
 para garantir que os dados recebidos
 pelo sistema
