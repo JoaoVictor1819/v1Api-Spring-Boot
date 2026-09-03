@@ -19,6 +19,6 @@ public class Cadastro {
 
     private String name;
     private String email;
-    private String descripiton;
+    private String descripition;
 
 }

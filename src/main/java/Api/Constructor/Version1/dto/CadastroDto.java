@@ -16,7 +16,7 @@ public record CadastroDto(
 
         @NotBlank
         @Size(max = 200, message = "Description must be")
-        String descripiton) {
+        String descripition) {
 }
 
 
