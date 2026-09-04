@@ -1,16 +1,14 @@
-package Api.Constructor.Version1.handler;
+package Api.Constructor.Version1.dto;
 
 
-import Api.Constructor.Version1.dto.ErrorDto;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@RestControllerAdvice
+@ControllerAdvice
 public class ValidationExceptionHandler {
 
 
@@ -18,9 +16,10 @@ public class ValidationExceptionHandler {
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorDto exceptionHandler(MethodArgumentNotValidException ex){
+        System.out.println("ENTROU NO VALIDATION EXCEPTION HANDLER");
         Map<String, String> Dtoerrors = new HashMap<>();
 
-        ex.getBindingResult().getFieldErrors().forEach(error -> {
+        ex.getBindingResult().getFieldErrors().forEach((error) -> {
             String fieldName =  error.getField();
             String errorMessage = error.getDefaultMessage();
             Dtoerrors.put(fieldName, errorMessage);

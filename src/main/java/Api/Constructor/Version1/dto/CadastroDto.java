@@ -14,7 +14,7 @@ public record CadastroDto(
         String name,
 
         @NotBlank(message = "Email is mandatory")
-        @Email
+        @Email(message = "Email should be valid")
         String email,
 
         @Size(max = 200, message = "Description must be")

@@ -33,7 +33,7 @@ public class CadastroController {
     public ResponseEntity<Cadastro> save(@RequestBody @Valid CadastroDto dto){
       var cadastro = new Cadastro();
         BeanUtils.copyProperties(dto, cadastro);
-        return ResponseEntity.status(HttpStatus.CREATED).body(cadastroService.save(cadastro));
+        return ResponseEntity.ok(cadastroService.save(cadastro));
     }
 
     @GetMapping("/findAll")
