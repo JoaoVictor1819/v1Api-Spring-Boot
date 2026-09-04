@@ -1,4 +1,4 @@
-package Api.Constructor.Version1.dto;
+package Api.Constructor.Version1.dto.TratamentoErrorDto;
 
 
 import org.springframework.http.HttpStatus;
@@ -16,9 +16,7 @@ public class ValidationExceptionHandler {
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorDto exceptionHandler(MethodArgumentNotValidException ex){
-        System.out.println("ENTROU NO VALIDATION EXCEPTION HANDLER");
         Map<String, String> Dtoerrors = new HashMap<>();
-
         ex.getBindingResult().getFieldErrors().forEach((error) -> {
             String fieldName =  error.getField();
             String errorMessage = error.getDefaultMessage();

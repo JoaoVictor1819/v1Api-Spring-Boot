@@ -1,4 +1,4 @@
-package Api.Constructor.Version1.dto;
+package Api.Constructor.Version1.dto.TratamentoErrorDto;
 
 import java.util.Map;
 
