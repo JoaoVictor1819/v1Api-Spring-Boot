@@ -17,7 +17,7 @@ public record CadastroDto(
         @Email(message = "Email should be valid")
         String email,
 
-        @Size(max = 200, message = "Description must be")
+        @Size(max = 200, message = "The description cannot exceed 200 characters.")
         @NotBlank(message = "Description is mandatory")
         String descripition) {
 

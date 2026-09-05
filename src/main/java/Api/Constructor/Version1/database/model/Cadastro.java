@@ -20,10 +20,16 @@ public class Cadastro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "Time_Registration")
     private LocalDateTime dataRegistro = LocalDateTime.now();
 
+    @Column(name = "User", unique = false, updatable = true)
     private String name;
+
+    @Column(name = "Email_User", unique = true, updatable = false)
     private String email;
+
+    @Column(name = "Descripition_User")
     private String descripition;
 
 }
