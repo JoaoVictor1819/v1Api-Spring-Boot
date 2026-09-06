@@ -1,6 +1,7 @@
 package Api.Constructor.Version1.database.model;
 
 
+import Api.Constructor.Version1.dto.CadastroDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,16 +21,24 @@ public class Cadastro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Time_Registration")
+
     private LocalDateTime dataRegistro = LocalDateTime.now();
 
-    @Column(name = "User", unique = false, updatable = true)
+
     private String name;
 
-    @Column(name = "Email_User", unique = true, updatable = false)
+    @Column(unique = true, updatable = false)
     private String email;
 
-    @Column(name = "Descripition_User")
+    @Column(unique = true)
+    private String document;
+
     private String descripition;
 
+    public Cadastro(CadastroDto dto) {
+        this.name = dto.name();
+        this.email = dto.email();
+        this.document = dto.document();
+        this.descripition = dto.descripition();
+    }
 }

@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.springframework.context.annotation.Primary;
 
+import java.lang.annotation.Documented;
 import java.time.LocalDateTime;
 
 public record CadastroDto(
@@ -16,6 +18,9 @@ public record CadastroDto(
         @NotBlank(message = "Email is mandatory")
         @Email(message = "Email should be valid")
         String email,
+
+        @NotBlank(message = "Document is mandatory")
+        String document,
 
         @Size(max = 200, message = "The description cannot exceed 200 characters.")
         @NotBlank(message = "Description is mandatory")

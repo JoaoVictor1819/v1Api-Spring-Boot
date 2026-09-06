@@ -36,6 +36,12 @@ public class CadastroController {
         return ResponseEntity.ok(cadastroService.save(cadastro));
     }
 
+    @GetMapping("/findDocument")
+    private ResponseEntity<Optional<Cadastro>> findByDocument(String document){
+        var fromDocument = cadastroService.findByDocument(document);
+        return ResponseEntity.ok(fromDocument);
+    }
+
     @GetMapping("/findAll")
     @Operation(summary = "Lista todos os cadastros", description = "Endpoint para listar todos os cadastros que estao na base de dados")
     private ResponseEntity<List<Cadastro>> findAll(){
