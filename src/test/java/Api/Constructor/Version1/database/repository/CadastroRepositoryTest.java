@@ -40,6 +40,17 @@ class CadastroRepositoryTest {
     }
 
 
+    @Test
+    @DisplayName("Should not get register from DB when register not exists")
+    void findCadastroByDocument2() {
+        String document = "1111111112";
+
+        Optional<Cadastro> result = this.cadastroRepository.findCadastroByDocument(document);
+
+        assertThat(result.isEmpty());
+    }
+
+
     private Cadastro createUser(CadastroDto dto){
         Cadastro newRegister = new Cadastro(dto);
         this.entityManager.persist(newRegister);
