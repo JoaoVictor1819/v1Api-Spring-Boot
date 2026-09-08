@@ -21,9 +21,8 @@ public class Cadastro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @Column(unique = true)
     private LocalDateTime dataRegistro = LocalDateTime.now();
-
 
     private String name;
 
@@ -32,6 +31,7 @@ public class Cadastro {
 
     @Column(unique = true)
     private String document;
+
 
     private String descripition;
 

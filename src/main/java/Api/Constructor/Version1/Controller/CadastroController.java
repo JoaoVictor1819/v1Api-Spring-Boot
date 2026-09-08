@@ -37,9 +37,10 @@ public class CadastroController {
     }
 
     @GetMapping("/findDocument")
+    @Operation(summary = "Buscar um cadastro por documento", description = "Endpoint para buscar um cadastro pelo documento na base de dados")
     private ResponseEntity<Optional<Cadastro>> findByDocument(String document){
         var fromDocument = cadastroService.findByDocument(document);
-        return ResponseEntity.ok(fromDocument);
+        return ResponseEntity.status(HttpStatus.OK).body(fromDocument);
     }
 
     @GetMapping("/findAll")
