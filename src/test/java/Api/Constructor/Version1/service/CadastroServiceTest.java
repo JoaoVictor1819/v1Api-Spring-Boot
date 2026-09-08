@@ -1,19 +1,87 @@
 package Api.Constructor.Version1.service;
 
+import Api.Constructor.Version1.database.model.Cadastro;
+import Api.Constructor.Version1.database.repository.CadastroRepository;
+import Api.Constructor.Version1.dto.CadastroDto;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static org.mockito.ArgumentMatchers.any;
+import org.springframework.test.context.ActiveProfiles;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 
+@ExtendWith(MockitoExtension.class)
+@ActiveProfiles("test")
 class CadastroServiceTest {
 
-    @Test
-    @DisplayName("Should creat register sucessfully is OK")
-    void saveCase1() {
-    }
+    @Mock
+    private CadastroRepository cadastroRepository;
 
-    @Test
-    @DisplayName("Should throw Exception register failed")
-    void saveCase2() {
+
+    @InjectMocks
+    private CadastroService cadastroService;
+
+    @Captor
+    private ArgumentCaptor<Cadastro> cadastroArgumentCaptorCaptor;
+
+    @Nested
+    class CadastroSave{
+
+        @Test
+        @DisplayName("Should creat a user with success")
+        void saveCase1(){
+
+            // Arrange
+            var cadastro = new Cadastro();
+            doReturn(cadastro).when(cadastroRepository).save(cadastroArgumentCaptorCaptor.capture());
+
+            var input = new CadastroDto("Victor",
+                    "victor@email.com",
+                    "11111111102",
+                    "Hello World!");
+            // Act
+            var output = cadastroService.save(input);
+
+
+            // Assert
+            assertNotNull(output);
+            var userCaptor = cadastroArgumentCaptorCaptor.getValue();
+
+            assertEquals(input.name(), userCaptor.getName());
+            assertEquals(input.email(), userCaptor.getEmail());
+            assertEquals(input.document(), userCaptor.getDocument());
+        }
+
+
+        @Test
+        @DisplayName("should throw excepition when error occurs")
+        void shouldThrowExceptionWhenErrorOccurs(){
+            // Arrange
+
+            doThrow(new RuntimeException()).when(cadastroRepository).save(any());
+
+            var input = new CadastroDto("Victor",
+                    "victor@email.com",
+                    "11111111102",
+                    "Hello World!");
+            // Act
+            assertThrows(RuntimeException.class, () ->  cadastroService.save(input));
+
+        }
     }
 }

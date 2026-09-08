@@ -24,7 +24,12 @@ public class CadastroService {
     }
 
 
-    public Cadastro save(Cadastro cadastro){
+    public Cadastro save(CadastroDto dto){
+       var cadastro = new Cadastro(dto);
+       cadastro.setName(dto.name());
+       cadastro.setEmail(dto.email());
+       cadastro.setDocument(dto.document());
+       cadastro.setDescripition(dto.descripition());
        return cadastroRepository.save(cadastro);
     }
 
@@ -32,6 +37,7 @@ public class CadastroService {
     public List<Cadastro> findAll(){
         return cadastroRepository.findAll();
     }
+
 
     public Cadastro findById(Long id){
         return cadastroRepository.findById(id)
