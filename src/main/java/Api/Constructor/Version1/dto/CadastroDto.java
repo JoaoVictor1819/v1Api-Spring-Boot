@@ -1,12 +1,11 @@
 package Api.Constructor.Version1.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import org.springframework.context.annotation.Primary;
 
 import java.lang.annotation.Documented;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public record CadastroDto(
@@ -21,6 +20,11 @@ public record CadastroDto(
 
         @NotBlank(message = "Document is mandatory")
         String document,
+
+        @NotNull(message = "Salary is mandatory")
+        @PositiveOrZero(message = "Salary must be a positive number or zero")
+        @DecimalMin(value = "0.1", message = "Salary must be a positive number or zero")
+        BigDecimal salario,
 
         @Size(max = 200, message = "The description cannot exceed 200 characters.")
         @NotBlank(message = "Description is mandatory")

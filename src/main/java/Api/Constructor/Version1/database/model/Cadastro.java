@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -32,6 +33,7 @@ public class Cadastro {
     @Column(unique = true)
     private String document;
 
+    private BigDecimal salario;
 
     private String descripition;
 
@@ -39,6 +41,7 @@ public class Cadastro {
         this.name = dto.name();
         this.email = dto.email();
         this.document = dto.document();
+        this.salario = dto.salario();
         this.descripition = dto.descripition();
     }
 }
