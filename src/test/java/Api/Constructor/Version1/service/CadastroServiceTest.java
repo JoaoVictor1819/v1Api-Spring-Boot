@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,6 +40,9 @@ class CadastroServiceTest {
 
     @Captor
     private ArgumentCaptor<Cadastro> cadastroArgumentCaptorCaptor;
+
+    @Captor
+    private ArgumentCaptor<Long>  LongArgumentCaptor;
 
     @Nested
     class CadastroSave{
@@ -66,6 +70,7 @@ class CadastroServiceTest {
 
             assertEquals(input.name(), userCaptor.getName());
             assertEquals(input.email(), userCaptor.getEmail());
+            assertEquals(input.salario(), userCaptor.getSalario());
             assertEquals(input.document(), userCaptor.getDocument());
         }
 
@@ -86,5 +91,29 @@ class CadastroServiceTest {
             assertThrows(RuntimeException.class, () ->  cadastroService.save(input));
 
         }
+    }
+
+    @Nested
+    class findById{
+
+        @Test
+        @DisplayName("Should get cadastro by id with success when optional is present")
+        void shouldGetCadastroByIdWithSuccessWhenOptionIsPresent() {
+
+            // Arrange
+            var cadastro = new Cadastro();
+            cadastro.setId(1L);
+            doReturn(Optional.of(cadastro)).when(cadastroRepository).findById(LongArgumentCaptor.capture());
+
+            // Act
+
+            var output = cadastroService.findById(cadastro.getId());
+
+            // Assert
+            assertTrue(cadastro.equals(output));
+            assertEquals(cadastro.getId(), LongArgumentCaptor.getValue());
+        }
+
+
     }
 }
