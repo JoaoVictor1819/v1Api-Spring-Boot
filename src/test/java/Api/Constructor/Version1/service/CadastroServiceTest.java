@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.ArgumentMatchers.any;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -53,6 +54,7 @@ class CadastroServiceTest {
             var input = new CadastroDto("Victor",
                     "victor@email.com",
                     "11111111102",
+                    new BigDecimal(1000),
                     "Hello World!");
             // Act
             var output = cadastroService.save(input);
@@ -78,6 +80,7 @@ class CadastroServiceTest {
             var input = new CadastroDto("Victor",
                     "victor@email.com",
                     "11111111102",
+                    new BigDecimal(1000),
                     "Hello World!");
             // Act
             assertThrows(RuntimeException.class, () ->  cadastroService.save(input));

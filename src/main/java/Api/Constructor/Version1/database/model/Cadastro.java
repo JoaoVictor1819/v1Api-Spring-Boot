@@ -33,6 +33,7 @@ public class Cadastro {
     @Column(unique = true)
     private String document;
 
+    @Column(updatable = true)
     private BigDecimal salario;
 
     private String descripition;
