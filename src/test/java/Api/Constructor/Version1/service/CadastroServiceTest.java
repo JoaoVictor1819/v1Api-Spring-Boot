@@ -3,27 +3,22 @@ package Api.Constructor.Version1.service;
 import Api.Constructor.Version1.database.model.Cadastro;
 import Api.Constructor.Version1.database.repository.CadastroRepository;
 import Api.Constructor.Version1.dto.CadastroDto;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import static org.mockito.ArgumentMatchers.any;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 
@@ -113,7 +108,6 @@ class CadastroServiceTest {
             assertTrue(cadastro.equals(output));
             assertEquals(cadastro.getId(), LongArgumentCaptor.getValue());
         }
-
 
     }
 }

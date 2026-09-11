@@ -33,8 +33,6 @@ public class Cadastro {
     @Column(unique = true)
     private String document;
 
-    @Column(updatable = true)
-    private BigDecimal salario;
 
     private String descripition;
 
@@ -42,7 +40,6 @@ public class Cadastro {
         this.name = dto.name();
         this.email = dto.email();
         this.document = dto.document();
-        this.salario = dto.salario();
         this.descripition = dto.descripition();
     }
 }

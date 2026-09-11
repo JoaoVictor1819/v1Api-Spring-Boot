@@ -3,6 +3,7 @@ package Api.Constructor.Version1.handler;
 
 
 import Api.Constructor.Version1.exception.CadastroNotFounException;
+import Api.Constructor.Version1.exception.CargoNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -16,6 +17,12 @@ public class RestExceptionHandle  {
 
     @ExceptionHandler(CadastroNotFounException.class)
     private ResponseEntity<RestErroMenssage> cadastroNotFound(CadastroNotFounException ex){
+        RestErroMenssage restErroMenssage = new RestErroMenssage(HttpStatus.NOT_FOUND, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(restErroMenssage);
+    }
+
+    @ExceptionHandler(CargoNotFoundException.class)
+    private ResponseEntity<RestErroMenssage> cargoNotFound(CargoNotFoundException ex){
         RestErroMenssage restErroMenssage = new RestErroMenssage(HttpStatus.NOT_FOUND, ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(restErroMenssage);
     }

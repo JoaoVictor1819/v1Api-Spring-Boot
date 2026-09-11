@@ -66,6 +66,7 @@ public class CadastroService {
 
         cadastro.setName(dto.name());
         cadastro.setEmail(dto.email());
+        cadastro.setDocument(dto.document());
         cadastro.setDescripition(dto.descripition());
 
         return cadastroRepository.save(cadastro);
