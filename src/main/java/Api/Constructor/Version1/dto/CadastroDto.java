@@ -21,10 +21,6 @@ public record CadastroDto(
         @NotBlank(message = "Document is mandatory")
         String document,
 
-        @NotNull(message = "Salary is mandatory")
-        @PositiveOrZero(message = "Salary must be a positive number or zero")
-        @DecimalMin(value = "0.1", message = "Salary must be a positive number or zero")
-        BigDecimal salario,
 
         @Size(max = 200, message = "The description cannot exceed 200 characters.")
         @NotBlank(message = "Description is mandatory")
