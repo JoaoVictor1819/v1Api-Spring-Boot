@@ -4,6 +4,7 @@ package Api.Constructor.Version1.Controller;
 import Api.Constructor.Version1.database.model.Cargo;
 import Api.Constructor.Version1.dto.CargoDto;
 import Api.Constructor.Version1.service.CargoService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -24,30 +25,35 @@ public class CargoController {
     }
 
     @PostMapping("/create")
+    @Operation(summary = "Cria um novo Cargo", description = "EndPoint que cria um novo cargo")
     public ResponseEntity<Cargo> create(@RequestBody @Valid CargoDto dto){
         var cargo = cargoService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(cargo);
     }
 
     @GetMapping("/findAll")
+    @Operation(summary = "Exibe os Cargos", description = "EndPoint que mostra os cargos que ja foram cadastrados")
     public ResponseEntity findAll(){
         List<Cargo> cargos = cargoService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(cargos);
     }
 
     @GetMapping("/findById/{id}")
+    @Operation(summary = "Exibe por id", description = "EndPoint que exibe um cargo por id")
     public ResponseEntity<Cargo> findById(@PathVariable Long id){
         var cargo = cargoService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(cargo);
     }
 
     @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Deleta por id", description = "EndPoint que deleta um cargo por id")
     public ResponseEntity delete(@PathVariable Long id){
         cargoService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body("Delete Cargo succes");
     }
 
     @PutMapping("/update/{id}")
+    @Operation(summary = "Atualiza por id", description = "EndPoint que atuliza informacoes do cargo por id")
     public ResponseEntity<Cargo> update(@PathVariable Long id, @RequestBody @Valid CargoDto dto){
         var upadateCargo = cargoService.update(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(upadateCargo);
