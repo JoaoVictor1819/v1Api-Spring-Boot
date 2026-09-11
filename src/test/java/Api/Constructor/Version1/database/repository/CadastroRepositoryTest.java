@@ -33,7 +33,7 @@ class CadastroRepositoryTest {
     @DisplayName("Should get register successfully from DB")
     void findCadastroByDocument() {
         String document = "999939939939";
-        var dto = new CadastroDto("Victor","victor@email.com",document,new BigDecimal(1000) , "Hello World!");
+        var dto = new CadastroDto("Victor","victor@email.com",document, "Hello World!");
         this.createUser(dto);
 
         Optional<Cadastro> result = this.cadastroRepository.findCadastroByDocument(document);

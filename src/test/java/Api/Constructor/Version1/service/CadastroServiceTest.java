@@ -53,7 +53,6 @@ class CadastroServiceTest {
             var input = new CadastroDto("Victor",
                     "victor@email.com",
                     "11111111102",
-                    new BigDecimal(1000),
                     "Hello World!");
             // Act
             var output = cadastroService.save(input);
@@ -79,7 +78,6 @@ class CadastroServiceTest {
             var input = new CadastroDto("Victor",
                     "victor@email.com",
                     "11111111102",
-                    new BigDecimal(1000),
                     "Hello World!");
             // Act
             assertThrows(RuntimeException.class, () ->  cadastroService.save(input));
