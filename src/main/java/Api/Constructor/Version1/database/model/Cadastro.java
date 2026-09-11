@@ -2,6 +2,7 @@ package Api.Constructor.Version1.database.model;
 
 
 import Api.Constructor.Version1.dto.CadastroDto;
+import Api.Constructor.Version1.dto.CargoDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +36,9 @@ public class Cadastro {
 
 
     private String descripition;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Cargo cargo;
 
     public Cadastro(CadastroDto dto) {
         this.name = dto.name();
