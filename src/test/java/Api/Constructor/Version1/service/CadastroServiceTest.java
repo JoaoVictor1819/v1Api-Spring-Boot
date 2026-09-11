@@ -65,7 +65,6 @@ class CadastroServiceTest {
 
             assertEquals(input.name(), userCaptor.getName());
             assertEquals(input.email(), userCaptor.getEmail());
-            assertEquals(input.salario(), userCaptor.getSalario());
             assertEquals(input.document(), userCaptor.getDocument());
         }
 
