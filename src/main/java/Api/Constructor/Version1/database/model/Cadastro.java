@@ -37,8 +37,7 @@ public class Cadastro {
 
     private String descripition;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Cargo cargo;
+
 
     public Cadastro(CadastroDto dto) {
         this.name = dto.name();
