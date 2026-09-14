@@ -2,34 +2,25 @@ package Api.Constructor.Version1.handler;
 
 
 
-import Api.Constructor.Version1.exception.CadastroNotFounException;
-import Api.Constructor.Version1.exception.CargoNotFoundException;
+import Api.Constructor.Version1.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @RestControllerAdvice
-public class RestExceptionHandle  {
+public class RestExceptionHandle {
 
 
-    @ExceptionHandler(CadastroNotFounException.class)
-    private ResponseEntity<RestErroMenssage> cadastroNotFound(CadastroNotFounException ex){
+    @ExceptionHandler(ResourceNotFoundException.class)
+    private ResponseEntity<RestErroMenssage> resourceNotFound(ResourceNotFoundException ex){
         RestErroMenssage restErroMenssage = new RestErroMenssage(HttpStatus.NOT_FOUND, ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(restErroMenssage);
     }
-
-    @ExceptionHandler(CargoNotFoundException.class)
-    private ResponseEntity<RestErroMenssage> cargoNotFound(CargoNotFoundException ex){
-        RestErroMenssage restErroMenssage = new RestErroMenssage(HttpStatus.NOT_FOUND, ex.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(restErroMenssage);
-    }
-
 
     @ExceptionHandler(RuntimeException.class)
-    private ResponseEntity<RestErroMenssage> cadastroException(RuntimeException ex){
+    private ResponseEntity<RestErroMenssage> globalExceptionHandler(RuntimeException ex){
         RestErroMenssage restErroMenssage = new RestErroMenssage(HttpStatus.BAD_REQUEST, ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(restErroMenssage);
     }

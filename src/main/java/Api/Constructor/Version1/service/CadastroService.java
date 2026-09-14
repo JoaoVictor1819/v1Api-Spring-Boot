@@ -4,7 +4,7 @@ package Api.Constructor.Version1.service;
 import Api.Constructor.Version1.database.model.Cadastro;
 import Api.Constructor.Version1.database.repository.CadastroRepository;
 import Api.Constructor.Version1.dto.CadastroDto;
-import Api.Constructor.Version1.exception.CadastroNotFounException;
+import Api.Constructor.Version1.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +37,7 @@ public class CadastroService {
 
     public Cadastro findById(Long id){
         return cadastroRepository.findById(id)
-                .orElseThrow(()-> new CadastroNotFounException("Cadastro with id " + id + " not found"));
+                .orElseThrow(()-> new ResourceNotFoundException("Cadastro with id " + id + " not found"));
     }
 
     public List<Cadastro> findByName(String name){
@@ -49,12 +49,12 @@ public class CadastroService {
 
     public Optional<Cadastro> findByDocument(String document){
         return Optional.of(cadastroRepository.findCadastroByDocument(document)
-                .orElseThrow(() -> new CadastroNotFounException("Document: " + document + " not found")));
+                .orElseThrow(() -> new ResourceNotFoundException("Document: " + document + " not found")));
     }
 
     public void delete(Long id){
         if (!cadastroRepository.existsById(id)){
-            throw new CadastroNotFounException("Cadastro with id " + id + " not found");
+            throw new ResourceNotFoundException("Cadastro with id " + id + " not found");
         }
         cadastroRepository.deleteById(id);
     }
@@ -62,7 +62,7 @@ public class CadastroService {
     @Transactional
     public Cadastro update(Long id, CadastroDto dto){
         Cadastro cadastro = cadastroRepository.findById(id)
-                .orElseThrow(()-> new CadastroNotFounException("Cadastro with id " + id + " not found"));
+                .orElseThrow(()-> new ResourceNotFoundException("Cadastro with id " + id + " not found"));
 
         cadastro.setName(dto.name());
         cadastro.setEmail(dto.email());

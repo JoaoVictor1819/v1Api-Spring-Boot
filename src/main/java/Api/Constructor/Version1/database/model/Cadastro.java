@@ -2,14 +2,11 @@ package Api.Constructor.Version1.database.model;
 
 
 import Api.Constructor.Version1.dto.CadastroDto;
-import Api.Constructor.Version1.dto.CargoDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -33,7 +30,6 @@ public class Cadastro {
 
     @Column(unique = true)
     private String document;
-
 
     private String descripition;
 

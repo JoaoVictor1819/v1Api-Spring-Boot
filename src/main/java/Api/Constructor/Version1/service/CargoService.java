@@ -4,7 +4,7 @@ package Api.Constructor.Version1.service;
 import Api.Constructor.Version1.database.model.Cargo;
 import Api.Constructor.Version1.database.repository.CargoRepository;
 import Api.Constructor.Version1.dto.CargoDto;
-import Api.Constructor.Version1.exception.CargoNotFoundException;
+import Api.Constructor.Version1.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,12 +29,12 @@ public class CargoService {
 
     public Cargo findById(Long id){
         return cargoRepository.findById(id)
-                .orElseThrow(() -> new CargoNotFoundException("The position with the ID " +id+ " does not exist."));
+                .orElseThrow(() -> new ResourceNotFoundException("The position with the ID " +id+ " does not exist."));
     }
 
     public void delete(Long id){
         if (!cargoRepository.existsById(id) || cargoRepository.findById(id).isEmpty()){
-            throw new CargoNotFoundException("The position with the ID " +id+ " does not exist.");
+            throw new ResourceNotFoundException("The position with the ID " +id+ " does not exist.");
         }
         cargoRepository.deleteById(id);
     }
@@ -42,7 +42,7 @@ public class CargoService {
 
     public Cargo update(Long id, CargoDto dto){
         Cargo cargo = cargoRepository.findById(id)
-                .orElseThrow(() -> new CargoNotFoundException("The position with the ID " +id+ " does not exist."));
+                .orElseThrow(() -> new ResourceNotFoundException("The position with the ID " +id+ " does not exist."));
 
         cargo.setNomeCargo(dto.nomeCargo());
         cargo.setSalarioCargo(dto.salarioCargo());
