@@ -25,16 +25,19 @@ public class Cargo {
 
     private String nomeCargo;
 
-    private BigDecimal salarioCargo;
 
     private String descricaoCargo;
+
+
+    @OneToOne(mappedBy = "salario_id",cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Salario salario;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Cadastro> cadastro = new ArrayList<>();
 
     public Cargo(CargoDto dto){
         this.nomeCargo = dto.nomeCargo();
-        this.salarioCargo = dto.salarioCargo();
         this.descricaoCargo = dto.descricaoCargo();
     }
 }

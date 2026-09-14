@@ -45,7 +45,6 @@ public class CargoService {
                 .orElseThrow(() -> new ResourceNotFoundException("The position with the ID " +id+ " does not exist."));
 
         cargo.setNomeCargo(dto.nomeCargo());
-        cargo.setSalarioCargo(dto.salarioCargo());
         cargo.setDescricaoCargo(dto.descricaoCargo());
 
         return cargoRepository.save(cargo);
