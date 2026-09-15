@@ -29,7 +29,7 @@ public class Cargo {
     private String descricaoCargo;
 
 
-    @OneToOne(mappedBy = "salario_id",cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Salario salario;
 
